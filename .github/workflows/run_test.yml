@@ -1,0 +1,35 @@
+name: Run test script
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [windows-latest]
+    defaults:
+      run:
+        shell: bash -l {0}
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+    - name: Setup Miniconda
+      uses: conda-incubator/setup-miniconda@v3
+      with:
+        miniforge-variant: Mambaforge
+        environment-file: environment.yml
+        activate-environment: dev-env
+    - name: Build Project
+      run: |
+        cmake --preset=ninja .
+
+        cd ../build && ninja
+    - name: Run test script
+      env:
+        TESTPATH: ${{ github.workspace }}/../build/
+      run: |
+        PYTHONPATH=$PWD/ python ../boost-example/test.py
