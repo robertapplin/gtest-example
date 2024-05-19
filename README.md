@@ -1,6 +1,3 @@
-# boost-example
-A repo for implementing a fitting package in c++20
-
 ## Building instructions
 
 Create a conda environment using the `environment.yml` file in this repo:
