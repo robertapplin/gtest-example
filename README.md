@@ -24,8 +24,8 @@ Navigate to your build directory and build the project:
 cd ../build && ninja
 ```
 
-Run the test python script:
+Run the tests:
 
 ```sh
-PYTHONPATH=$PWD/ python ../boost-example/test.py
+./MyTests.exe
 ```
