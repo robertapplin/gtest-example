@@ -6,5 +6,4 @@ channels:
 dependencies:
   - cmake
   - boost
-  - pre-commit
   - ninja
